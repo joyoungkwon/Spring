@@ -4,8 +4,11 @@ public class MemberServiceImpl implements MemberService{
 
 
 
-    private final MemberRepostitory memberRepostitory = new MemoryMemberRepository();
+    private final MemberRepostitory memberRepostitory;
 
+    public MemberServiceImpl(MemberRepostitory memberRepostitory) {
+        this.memberRepostitory = memberRepostitory;
+    }
 
     @Override
     public void join(Member member) {
