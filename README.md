@@ -10,6 +10,8 @@ dev note로 현재 까지 의 개발내용 을 확인하실 수 있습니다
 염두하고 개발하고 있습니다 보다 자세한 내용은 dev note를 참고 하시면 되겠습니다.
 
 IDE: IntelliJ IDEA 
+
 Langage: JAVA
+
 Framework: Spring
 
