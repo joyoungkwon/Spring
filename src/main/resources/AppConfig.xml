@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="memberService" class="hello.core.member.MemberServiceImpl">
+        <constructor-arg name="memberRepository" ref="memberRepository"/>
+    </bean>
+
+    <bean id ="memberRepository" class="hello.core.member.MemoryMemberRepository"/>
+
+    <bean id="discountPolicy" class="hello.core.discount.RateDiscountPolicy"/>
+
+    <bean id="orderService" class="hello.core.order.OrderServiceImpl">
+        <constructor-arg name="memberRepository" ref="memberRepository"/>
+        <constructor-arg name="discountPolicy" ref="discountPolicy"/>
+    </bean>
+
+    <!--memberService 빈을 정의하고, 해당 빈이 hello.core.member.MemberServiceImpl 클래스의 인스턴스임을 선언
+    생성자를 통해 memberRepository 빈을 주입
+
+    memberRepository 빈을 정의하고, 해당 빈이 hello.core.member.MemoryMemberRepository 클래스의 인스턴스임을 선언
+
+    discountPolicy 빈을 정의하고, 해당 빈이 hello.core.discount.RateDiscountPolicy 클래스의 인스턴스임을 선언
+
+    orderService 빈을 정의하고, 해당 빈이 hello.core.order.OrderServiceImpl 클래스의 인스턴스임을 선언
+    생성자를 통해 memberRepository 빈과 discountPolicy 빈을 주입
+    -->
+</beans>
