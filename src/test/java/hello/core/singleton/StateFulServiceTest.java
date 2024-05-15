@@ -17,11 +17,14 @@ class StateFulServiceTest {
     void statefulServiceSingleton(){
         ApplicationContext ac= new AnnotationConfigApplicationContext(TestConfig.class);
         StateFulService stateFulService1 = ac.getBean(StateFulService.class);
-        StateFulService stateFulService2= ac.getBean(StateFulService.class);
+        StateFulService stateFulService2 = ac.getBean(StateFulService.class);
 
-        stateFulService1.order("memberA",10000);
-        stateFulService2.order("memberB",20000);
-        org.assertj.core.api.Assertions.assertThat(stateFulService1.getPrice()).isEqualTo(20000);
+        int  memberAPrice = stateFulService1.order("memberA",10000);
+        int memberBPrice = stateFulService2.order("memberB",20000);
+
+        
+        org.assertj.core.api.Assertions.assertThat(memberAPrice).isEqualTo(10000);
+        System.out.println("memberAPrice = " + memberAPrice);
     }
 
     static class TestConfig {
