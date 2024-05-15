@@ -1,6 +1,7 @@
 package hello.core.singleton;
 
 import hello.core.AppConfig;
+import hello.core.member.Member;
 import hello.core.member.MemberService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -20,5 +21,13 @@ public class SingletonTest {
            user1 == user 2 -> f
         * */
         Assertions.assertThat(memberService_USER1).isNotSameAs(memberService_USER2);
+    }
+
+    @Test
+    @DisplayName("Singleton test")
+    void SingletonforEQInctance(){
+       SingletonService singletonService1 = SingletonService.getInstance();
+       SingletonService singletonService2 = SingletonService.getInstance();
+       Assertions.assertThat(singletonService2).isSameAs(singletonService1);
     }
 }
