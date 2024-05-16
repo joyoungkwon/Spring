@@ -233,6 +233,49 @@ Dependency Injection 을 interface로 역할과 구현을 분리시켜놓았다
 라는 의문점에서 테스트 코드를 작성해보았다.
 
 
+이유는 다음과 같다
+@Configuration이라는 어노테이션으로 AppConfig.class 를 SpringContainer로 지정할때
+우리가 만든 AppConfig를 자체로 사용하는게 아니라 , AppConfig@GCLIB 라는
+바이트코드조작 라이브러리을 이용하여 내가만든 AppConfig를 읽고 , AppConfig를 상속받는
+ AppConfig@GCLIB라는 instance class를 생성한다.그리고 스프링 컨테이너로 등록한다
+
+내가만든 Class에 내가만든 method를 오버라이드 하는데, 그 안에 아마도 이런 예상코드가 작성 되어있는거 같다
+@Bean
+public MemberRepository memberRepository(){
+
+	if(MemoryMemberReposiotry 가 이미 있으면){
+	return 스프링 컨테이너에서 찾아서 반환
+	}else{ // 없으면
+	기존로직을 호출해서 MemoryMemberRepository 를 생성하고 새롭게 스프링 bean에 등록
+	후 return 반환.
+}
+@Bean 이 붙은 메서드 마다 이미 스프링빈이 존재하면 존재하는 빈을 반환하고
+스프링빈이 없으면 생성해서 스프링 빈으로 등록해서 반환하는 코드가 동작한다.
+작성한 SingletonSpringContainerTest 코드 를 보면 알수 있듯이
+예상했던 것과 다르고 SpringContainer는 Singleton 을 보장하였다
+
+
+
+이유는 다음과 같다
+@Configuration이라는 어노테이션으로 AppConfig.class 를 SpringContainer로 지정할때
+우리가 만든 AppConfig를 자체로 사용하는게 아니라 , AppConfig@GCLIB 라는
+바이트코드조작 라이브러리을 이용하여 내가만든 AppConfig를 읽고 , AppConfig를 상속받는
+ AppConfig@GCLIB라는 instance class를 생성한다.그리고 스프링 컨테이너로 등록한다
+
+내가만든 Class에 내가만든 method를 오버라이드 하는데, 그 안에 아마도 이런 예상코드가 작성 되어있는거 같다
+@Bean
+public MemberRepository memberRepository(){
+
+	if(MemoryMemberReposiotry 가 이미 있으면){
+	return 스프링 컨테이너에서 찾아서 반환
+	}else{ // 없으면
+	기존로직을 호출해서 MemoryMemberRepository 를 생성하고 새롭게 스프링 bean에 등록
+	후 return 반환.
+}
+@Bean 이 붙은 메서드 마다 이미 스프링빈이 존재하면 존재하는 빈을 반환하고
+스프링빈이 없으면 생성해서 스프링 빈으로 등록해서 반환하는 코드가 동작한다.
+
+
 
 
 
