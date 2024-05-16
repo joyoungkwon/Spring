@@ -27,16 +27,18 @@ public class AppConfig {
 
     @Bean
     public MemberService memberService(){
+        System.out.println("AppConfig.memberService");
         return  new MemberServiceImpl(memberRepository());
     }
     @Bean
     public MemberRepostitory memberRepository() {
+        System.out.println("AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService(){
-
+        System.out.println("AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
     @Bean
@@ -44,6 +46,13 @@ public class AppConfig {
        /* return new FixiDiscountPolicy();*/
         return new RateDiscountPolicy();
     }
+
+    /*
+    * SingletonSprigContainerTest를 실행시켰을때 기대값
+    * 스프링 컨테이너에서 bean의 실행결과 순서는 보장하지않지만
+    * memberRepository는 3번 호출이 되는걸 기대.
+    * 결과는 1번씩만 호출 같은 인스턴스를 쓰고있다는걸 확인.
+    * */
 
 
 }
