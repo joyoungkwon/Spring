@@ -23,6 +23,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration // 설정 정보 , 어플리케이션의 어떤 설정정보 등을 뜻하는 어노테이션
 public class AppConfig {
 
+
+
     @Bean
     public MemberService memberService(){
         return  new MemberServiceImpl(memberRepository());
