@@ -231,7 +231,8 @@ Dependency Injection 을 interface로 역할과 구현을 분리시켜놓았다
 이러면 Spring컨테이너는 Single톤을 유지할수 있을까?
 
 라는 의문점에서 테스트 코드를 작성해보았다.
-
+작성한 SingletonSpringContainerTest 코드 를 보면 알수 있듯이
+예상했던 것과 다르고 SpringContainer는 Singleton 을 보장하였다
 
 이유는 다음과 같다
 @Configuration이라는 어노테이션으로 AppConfig.class 를 SpringContainer로 지정할때
@@ -251,8 +252,7 @@ public MemberRepository memberRepository(){
 }
 @Bean 이 붙은 메서드 마다 이미 스프링빈이 존재하면 존재하는 빈을 반환하고
 스프링빈이 없으면 생성해서 스프링 빈으로 등록해서 반환하는 코드가 동작한다.
-작성한 SingletonSpringContainerTest 코드 를 보면 알수 있듯이
-예상했던 것과 다르고 SpringContainer는 Singleton 을 보장하였다
+
 
 
 
