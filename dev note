@@ -294,6 +294,26 @@ ex hello.core.member" ->
 
 참고 + useDefaultFilters = > 기본으로 켜져있다 이옵션을 끄면 기본스캔 대상들이 제외
 
+Spring Filter
+includeFilters -> 스캔 대상을 추가 지정
+excludeFilters-> 스캔대상에서 제외할 대상을 지정
+
+
+Spring Filter
+
+
+includeFilters -> 스캔 대상을 추가 지정
+
+excludeFilters-> 스캔대상에서 제외할 대상을 지정
+
+FilterType 옵션
+1 ANNOTATION - 기본값
+2 ASSIGNABLE_TYPE -> 지정한 타입과 자식 타입을 인식
+3 ASPECTJ -> AspectJ패턴 사용
+4 REGEX -> 정규 표현식 사용
+5 CUSTOM -> 'TypeFiter'이라는 인터페이스를 구현해서 처리
+
+
 
 
 
