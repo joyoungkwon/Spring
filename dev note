@@ -267,6 +267,33 @@ public MemberRepository memberRepository(){
 @AutoWired 를 Constructor 위에 지정해주면 기본 타입을 Constructor를 통해 instance로 조회하고 자동 dependencyInjection 을 해준다.
 
 
+컴포넌트 스캔과 탐색 위치
+
+basePackages ="특정 scan하고자 하는 packages를 설정
+ex hello.core.member" ->
+
+@ComponentScan(
+	basePackges ->"hello.core.member" -> 모든 java 코드를 scan하면
+속도가 문제가 생길수도 있음 -> 성능 향상 메모리절약 할수 있을듯
++ 중복도 가능, 로 추가.
++basePackgesclasses도 있음 중복가능 마찬가지로 , 로 구분
+)
+권장 , 관례 ->설정 정보 클래스의 위치를 프로젝트 최상단에 두는 방법
+스프링 부트도 이방버을 기본으로 제공
+
+
+"@ComponentScan의 기본 스캔 대상"
+@Component _컴포넌트스캔의 사용
+@Controller_mvc컨트롤러에서 사용,+역할:스프링 MVC Controller로 인식
+
+@Service_스프링 비지니스 로직에서 사용,+ 비즈니스 logic이 여기있구나 정도 식별
+
+@Repository_ 데이터 접근 계층에서 사용 JPA?,+역할: 역할 데이터 접근계층인식하고 데이터계층 (DB)의 Exception을 SpringException으로 변환해서 출력해줌
+
+@Configurataion_ 설정정보에서 사용,+역할 + 스프링 설정 정보 인식 , Singleton 유지 되게 함
+
+참고 + useDefaultFilters = > 기본으로 켜져있다 이옵션을 끄면 기본스캔 대상들이 제외
+
 
 
 
