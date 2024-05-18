@@ -30,9 +30,8 @@ public class MyAnnotationClassTest {
         );
         Assertions.assertThat(ac.getBean(AnnotationExmyIncludeClassA.class)).isInstanceOf(AnnotationExmyIncludeClassA.class);
         // 궁금해서 넣어봄
+
     }
-
-
     @Configuration
     @ComponentScan(
             includeFilters = @ComponentScan.Filter(type =
@@ -43,7 +42,6 @@ public class MyAnnotationClassTest {
 
     )
     static class ComponentFilterAppConfig {
-
 
     }
 }
