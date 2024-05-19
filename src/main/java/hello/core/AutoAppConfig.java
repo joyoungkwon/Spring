@@ -17,7 +17,6 @@ import org.springframework.context.annotation.FilterType;
 @Configuration//설정정보라는 Annotation
 @ComponentScan (// Annotation Component 를 읽는 Annotation ComponentScan
         excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION,classes = Configuration.class)
-
 )
 public class AutoAppConfig {
 

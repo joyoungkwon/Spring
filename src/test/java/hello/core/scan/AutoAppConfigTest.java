@@ -12,16 +12,12 @@ public class AutoAppConfigTest {
 
 
     @Test
-    @DisplayName("AutoConfig Basic Test")
-
     void AutoAppConfigBasicTest() {
         ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
         MemberService memberService = ac.getBean(MemberService.class);
-        String[] beanDefinitionNames = ac.getBeanDefinitionNames();
-        for (String beanDefinitionName : beanDefinitionNames) {
-            System.out.println("beanDefinitionName = " + beanDefinitionName);
-        }
+        System.out.println("memberService = " + memberService);
+
         Assertions.assertThat(memberService).isInstanceOf(MemberService.class);
-        System.out.println("memberService.getClass() = " + memberService.getClass());
+
     }
 }
