@@ -6,30 +6,29 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepostitory;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("service")
-public class OrderServiceImpl implements OrderService{
+@RequiredArgsConstructor
+public class OrderServiceImpl implements OrderService {
 
     private final MemberRepostitory memberRepostitory;
     private final DiscountPolicy discountPolicy;
-@Autowired
-    public OrderServiceImpl(MemberRepostitory memberRepostitory, DiscountPolicy discountPolicy) {
-        this.memberRepostitory = memberRepostitory;
-        this.discountPolicy = discountPolicy;
-    }
+
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
 
         Member member = memberRepostitory.findById(memberId);
-        int discountPrice = discountPolicy.discount(member,itemPrice);
+        int discountPrice = discountPolicy.discount(member, itemPrice);
 
 
-        return new Order(memberId,itemName,itemPrice,discountPrice);
+        return new Order(memberId, itemName, itemPrice, discountPrice);
     }
-/*test for method*/
+
+    /*test for method*/
     public MemberRepostitory getMemberRepostitory() {
         return memberRepostitory;
     }
