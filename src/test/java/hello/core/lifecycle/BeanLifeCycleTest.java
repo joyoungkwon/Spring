@@ -10,21 +10,21 @@ import org.springframework.context.annotation.Configuration;
 public class BeanLifeCycleTest {
     @Test
     public void BeanLifeCycleTest() {
-        ConfigurableApplicationContext ac = new AnnotationConfigApplicationContext(LifeCycleConfig.class);
-        NetworkClient bean = ac.getBean(NetworkClient.class);
+        ConfigurableApplicationContext ac = new AnnotationConfigApplicationContext(LifeCycleConfig2.class);
+        NetworkClient2  bean = ac.getBean(NetworkClient2.class);
         ac.close();
 
 
     }
 
     @Configuration
-    static class LifeCycleConfig {
+    static class LifeCycleConfig2 {
 
-        @Bean
-        public NetworkClient LifeCycleConfig() {
-            NetworkClient networkClient = new NetworkClient();
-            networkClient.setUrl("http://wwww.naver.com");
-            return networkClient;
+        @Bean(initMethod = "init" , destroyMethod = "close")
+        public NetworkClient2 LifeCycleConfig2() {
+            NetworkClient2 networkClient2 = new NetworkClient2();
+            networkClient2.setUrl("http://wwww.naver.com");
+            return networkClient2;
         }
 
     }
