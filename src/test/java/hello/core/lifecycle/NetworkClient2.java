@@ -1,6 +1,9 @@
 package hello.core.lifecycle;
 
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+
 public class NetworkClient2 {
 
     private String url;
@@ -34,6 +37,7 @@ public class NetworkClient2 {
 
 
 
+    @PostConstruct //(생성된 이후에(생성자가 생성된 이후에 라는 뜻))
     public void init()  {
         System.out.println(" init 호출 메서드 성공");
         Connect();
@@ -41,7 +45,7 @@ public class NetworkClient2 {
 
     }
 
-
+    @PreDestroy// 소멸되기 직전에 라는 뜻(LifeCycle for @Bean)
     public void close()  {
         System.out.println(" close 호출 성공 자원해제." );
         disConnect(); // 끝났다고 알려주는 logic
