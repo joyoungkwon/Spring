@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -43,26 +44,24 @@ public class SingletonWithPrototypeTest1 {
 
         ClientBean clientBean2 = ac.getBean(ClientBean.class);
         int count2 = clientBean2.logic();
-        Assertions.assertThat(count2).isEqualTo(2);
+        Assertions.assertThat(count2).isEqualTo(1);
 
     }
 
     @Scope("singleton")
     static class ClientBean {
-        private final PrototypeBean prototypeBean; // 이미생성시점에 주입이 완료
-        // 생성시점 의존성 주입 싱글톤이기 때문에 이거 계속 사용됨 그래서 밑에서 아무리
-        // prototype으로 호출 해도 생성과 동시에 의존성 주입이 완료 되어 버
-        // 려서 Singleton 디자인 패턴이 덮어 써버림 의도와 다름
-
+        @Autowired
+        private ObjectProvider<PrototypeBean> prototypeBean;
 
         @Autowired
-        ClientBean(PrototypeBean prototypeBean) {
+        ClientBean(ObjectProvider<PrototypeBean> prototypeBean) {
             this.prototypeBean = prototypeBean;
         }
 
         public int logic() {
-            prototypeBean.addCount();
-            int count = prototypeBean.getCount();
+            PrototypeBean object = prototypeBean.getObject();
+            object.addCount();
+            int count = object.getCount();
             return count;
         }
     }
