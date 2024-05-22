@@ -12,6 +12,7 @@ import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 /*
 * AppConfig -> 나의 어플리케이션을 전체를 설정하고 구성한다는 뜻
@@ -30,10 +31,11 @@ public class AppConfig {
         System.out.println("AppConfig.memberService");
         return  new MemberServiceImpl(memberRepository());
     }
+    @Primary
     @Bean
-    public MemberRepostitory memberRepository() {
+    public MemberRepostitory  memberRepository() {
         System.out.println("AppConfig.memberRepository");
-        return new MemoryMemberRepository();
+        return new MemoryMemberRepository ();
     }
 
     @Bean

@@ -1,14 +1,18 @@
 package hello.core.member;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
+@Getter
 @Component("service")
 public class MemberServiceImpl implements MemberService{
 
 
-
+    /*
+Test for method
+* */
     private final MemberRepostitory memberRepostitory;
 
     @Autowired
@@ -24,11 +28,5 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Member findMember(Long memberId) {
         return memberRepostitory.findById(memberId);
-    }
-/*
-Test for method
-* */
-    public MemberRepostitory getMemberRepostitory() {
-        return memberRepostitory;
     }
 }

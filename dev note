@@ -561,6 +561,21 @@ Singleton은 이때 생성되는 Bean을 GCLIB 바이트코드조작 라이브�
 (@PreDestroy)가 먹히지 않는다. 그래서 종료를 알고 싶거나 종료시키면 직접 종료 시켜야 하는 특징이 있다
 
 
+웹 환경 추가
+웹스코프는 웹환경에서만 동작하므로 WEB환경이 동작하도록 gradle에 라이브러리를 추가해야함
+
+// 웹 라이브러리
+implementation 'org.springframework.boot:spring-boot-starter-web'
+
+spring-boot-starter-web 라이브러리를 추가 하면 스프링 부트는 내장 톰켓 서버를 활용해서 웹서버와 스프링을 함께 실행시킨다
+
+참고: 스프링 부트는 웹라이브러리가 없으면 지금까지 해온 방식인 AnnotationConfigApplicationContext 을 기반으로 어플리케이션을 구동한다. 웹 라이브러리가 추가되면 웹과 관련된 추가설정과 환경들이 필요하므로 AnnotationConfigServletApplicationContext를 기반으로 애플리케이션을 구동시킨다
+
+(위치 main/resouces/application.properties)
+tomcat기본 포트 8080 을 바꾸고 싶다면?
+applcation.properties 에 들어가서
+server.port= '내가쓸 port번호'로 바꾸면된다
+
 
 
 
