@@ -18,15 +18,13 @@ import java.util.UUID;
 * */
 
 @Component // 스캔
-@Scope(value = "request") // http 가 요청 될떄 요청당 하나씩 생기고 요청이 종료되면 소멸 되는 범위.(lifeCycle)
+@Scope(value="request")// http 가 요청 될떄 요청당 하나씩 생기고 요청이 종료되면 소멸 되는 범위.(lifeCycle)
 public class MyLogger {
     private String uuid;
     private String RequestURL;
 
-
-    public void setRequestURL(String requestURL){
-
-        requestURL = this.RequestURL;
+    public void setRequestURL(String requestURL) {
+        RequestURL = requestURL;
     }
 
     public void log (String message){
@@ -37,7 +35,7 @@ public class MyLogger {
     @PostConstruct
     public void init(){
         uuid = UUID.randomUUID().toString(); // 생성 새로운거 생성하는거임 그냥
-        System.out.println("[" + uuid +"]" + "request scope bean create " + this );
+        System.out.println("["+uuid+"]" + "request scope bean create : " + this );
     }
 
     @PreDestroy
