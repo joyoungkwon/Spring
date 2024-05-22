@@ -5,6 +5,7 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import lombok.Setter;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -18,7 +19,8 @@ import java.util.UUID;
 * */
 
 @Component // 스캔
-@Scope(value="request")// http 가 요청 될떄 요청당 하나씩 생기고 요청이 종료되면 소멸 되는 범위.(lifeCycle)
+@Scope(value="request",proxyMode = ScopedProxyMode.TARGET_CLASS)
+// http 가 요청 될떄 요청당 하나씩 생기고 요청이 종료되면 소멸 되는 범위.(lifeCycle)
 public class MyLogger {
     private String uuid;
     private String RequestURL;
